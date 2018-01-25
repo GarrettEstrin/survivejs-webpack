@@ -2,15 +2,19 @@
   "name": "webpack-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env dev\"",
+    "build": "webpack --env production"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "exec": "^0.2.1",
     "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.10.0"
+    "nodemon": "^1.14.11",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
