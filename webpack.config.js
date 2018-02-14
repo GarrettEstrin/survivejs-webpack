@@ -1,63 +1,47 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+
+const parts = require('./webpack.parts');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
 };
 
-const commonConfig = {
-  // Entries have to resolve to files. they rely on Node convention by default so if a directory container *index.js*, it resolves to that
-  entry: {
-    app: PATHS.app,
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack Demo',
-    }),
-  ],
-};
-
-const productionConfig = () => commonConfig;
-
-const developmentConfig = () => {
-  const config = {
-    devServer: {
-      historyApiFallback: true,
-      stats: 'errors-only',
-      host: process.env.HOST,
-      port: process.env.PORT,
-      overlay: true,
+const commonConfig = merge([
+  {
+    entry: {
+      app: PATHS.app,
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          enforce: 'pre',
-
-          loader: 'eslint-loader',
-          options: {
-            emitWarning: true,
-            emitError: true,
-          },
-        },
-      ],
+    output: {
+      path: PATHS.build,
+      filename: '[name].js',
     },
-  };
-  return Object.assign(
-    {},
-    commonConfig,
-    config
-  );
-};
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Webpack Demo',
+      }),
+    ],
+  },
+  parts.lintJavaScript({ include: PATHS.app }),
+])
+
+const productionConfig = merge([
+
+]);
+
+const developmentConfig = merge([
+  parts.devServer({
+    //Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT,
+  })
+])
 module.exports = (env) => {
   if(env === 'production'){
-    return productionConfig();
+    return merge(commonConfig, productionConfig);
   }
 
-  return developmentConfig();
+  return merge(commonConfig, developmentConfig);
 };
