@@ -23,3 +23,40 @@ exports.lintJavaScript = ({ include, exclude, options }) => ({
     ],
   },
 });
+
+exports.loadCSS = ({ include, exclude } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        include,
+        exclude,
+
+        use: [
+          {
+            loader: 'style-loader',
+            options:{}
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => ([
+                require('postcss-cssnext')(),
+              ]),
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {},
+          },
+        ],
+      },
+    ],
+  },
+});
