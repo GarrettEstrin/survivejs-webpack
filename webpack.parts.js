@@ -60,3 +60,30 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
     ],
   },
 });
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+exports.extractCSS = ({ include, exclude, use }) => {
+  //Output extracted CSS to a file
+  const plugin = new ExtractTextPlugin({
+    filename: '[name].css',
+  });
+
+  return {
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          include,
+          exclude,
+
+          use: plugin.extract({
+            use,
+            fallback: 'style-loader',
+          }),
+        },
+      ],
+    },
+    plugins: [plugin],
+  };
+};

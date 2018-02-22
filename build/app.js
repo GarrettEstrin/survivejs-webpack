@@ -60,31 +60,47 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__component__ = __webpack_require__(1);
-
-
-document.body.appendChild(Object(__WEBPACK_IMPORTED_MODULE_0__component__["a" /* default */])());
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = ((text = "Hello World Two") => {
-    const element = document.createElement('div');
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__component__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_scss__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_scss__);
 
-    element.innerHTML = text;
-    return element;
+document.body.appendChild(Object(__WEBPACK_IMPORTED_MODULE_0__component__["a" /* default */])());
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__main_scss__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ((text = 'Hello World Two') => {
+  const element = document.createElement('div');
+
+  element.innerHTML = text;
+  element.className = __WEBPACK_IMPORTED_MODULE_0__main_scss___default.a.redButton;
+  return element;
 });
+
+
 
 /***/ })
 /******/ ]);
