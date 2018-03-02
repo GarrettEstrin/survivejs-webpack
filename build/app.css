@@ -1,5 +1,13 @@
 body {
   background: greenyellow;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: red;
+  color: blue;
+  border-radius: 10px 5px;
+  -webkit-transition: 3s;
+  transition: 3s;
 }
 
 .redButton {
