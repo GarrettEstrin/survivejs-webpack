@@ -28,7 +28,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: [/\.css$/,/\.scss$/],
         include,
         exclude,
 
@@ -40,7 +40,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: false,
             },
           },
           {
@@ -73,7 +73,7 @@ exports.extractCSS = ({ include, exclude, use }) => {
     module: {
       rules: [
         {
-          test: /\.scss$/,
+          test: [/\.css$/,/\.scss$/],
           include,
           exclude,
 
@@ -95,4 +95,12 @@ exports.autoprefix = () => ({
       require('autoprefixer')(),
     ]),
   },
+});
+
+const PurifyCSSPlugin = require('purifycss-webpack');
+
+exports.purifyCSS = ({ paths }) => ({
+  plugins: [
+    new PurifyCSSPlugin({ paths }),
+  ],
 });

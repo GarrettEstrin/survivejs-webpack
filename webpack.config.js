@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 
 const parts = require('./webpack.parts');
 
+const glob = require('glob');
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
@@ -31,6 +32,9 @@ const productionConfig = merge([
   parts.extractCSS({ 
     exclude: [],
     use: ['css-loader', parts.autoprefix()], 
+  }),
+  parts.purifyCSS({
+    paths: glob.sync(`${PATHS.app}/**/*.js`, {nodir: true})
   }),
 ]);
 
