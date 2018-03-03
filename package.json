@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --env dev\"",
     "build": "webpack --config webpack.config.js --env production",
-    "lint:js": "eslint app/ webpack.*.js --cache"
+    "lint:js": "eslint app/ webpack.*.js --cache",
+    "lint:style": "stylelint app/**/*.css app/**/*.scss --silent"
   },
   "author": "",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "sass-loader": "^6.0.6",
     "scss-loader": "0.0.1",
     "style-loader": "^0.20.2",
+    "stylelint": "^9.1.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
